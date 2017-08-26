@@ -1,4 +1,4 @@
-package org.fiuba.sii.springbootgroovytest.users.web
+package org.test.springbootgroovytest.users.web
 
 class UserDto {
     String username

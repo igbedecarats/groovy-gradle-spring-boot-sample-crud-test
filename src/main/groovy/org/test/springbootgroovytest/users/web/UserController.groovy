@@ -1,12 +1,12 @@
-package org.fiuba.sii.springbootgroovytest.users.web
+package org.test.springbootgroovytest.users.web
 
-import org.fiuba.sii.springbootgroovytest.users.domain.User
-import org.fiuba.sii.springbootgroovytest.users.domain.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RestController
+import org.test.springbootgroovytest.users.domain.User
+import org.test.springbootgroovytest.users.domain.UserRepository
 
 @RestController
 @RequestMapping('/users')

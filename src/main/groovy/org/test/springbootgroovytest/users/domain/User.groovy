@@ -1,4 +1,4 @@
-package org.fiuba.sii.springbootgroovytest.users.domain
+package org.test.springbootgroovytest.users.domain
 
 import javax.persistence.*
 

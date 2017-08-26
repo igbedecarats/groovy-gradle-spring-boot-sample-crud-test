@@ -1,12 +1,12 @@
-package org.fiuba.sii.springbootgroovytest
+package org.test.springbootgroovytest
 
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 
 @SpringBootApplication
-class SpringBootGroovyTestApplication {
+class Application {
 
 	static void main(String[] args) {
-		SpringApplication.run (SpringBootGroovyTestApplication, args)
+		SpringApplication.run Application, args
 	}
 }

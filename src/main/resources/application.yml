@@ -9,3 +9,10 @@ spring:
 
   jpa:
     show-sql: true
+
+server:
+  context-path: /api
+  connection-timeout: 30000
+  tomcat:
+    max-threads: 400
+    accept-count: 800

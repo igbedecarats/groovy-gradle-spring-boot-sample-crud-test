@@ -11,8 +11,17 @@ spring:
     show-sql: true
 
 server:
-  context-path: /api
   connection-timeout: 30000
   tomcat:
     max-threads: 400
     accept-count: 800
+
+logging:
+  file: /var/log/test.log
+  level:
+    org.springframework.web.client.RestTemplate: DEBUG
+    org.springframework: INFO
+    org.test.springbootgroovytest: DEBUG
+    org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
+
+secret-key: shh-secret

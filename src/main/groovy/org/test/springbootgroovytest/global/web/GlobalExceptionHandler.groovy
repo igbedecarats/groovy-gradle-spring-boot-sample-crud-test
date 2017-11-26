@@ -10,9 +10,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import javax.persistence.EntityNotFoundException
 
-/**
- * This class handles exceptions raised in any part of the application
- */
 @ControllerAdvice
 class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
@@ -22,9 +19,28 @@ class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return logAndReturnResponseEntityForError(ex, HttpStatus.NOT_FOUND)
     }
 
+    @ExceptionHandler([IllegalArgumentException.class, NullPointerException.class])
+    @ResponseBody
+    ResponseEntity<?> handleBadRequests(final Exception ex) {
+        return logAndReturnResponseEntityForError(ex, HttpStatus.BAD_REQUEST)
+    }
+
     private ResponseEntity<?> logAndReturnResponseEntityForError(final Exception ex,
                                                                  final HttpStatus httpStatus) {
-        logger.error(ex.getMessage(), ex.getCause());
-        return new ResponseEntity<Object>(httpStatus);
+        logger.error(ex.getMessage(), ex.getCause())
+        HttpApiError error = new HttpApiError(httpStatus, ex.getMessage())
+        return new ResponseEntity<Object>(error, new HttpHeaders(), error.getStatus())
+    }
+
+    ResponseEntity<HttpApiError> toResponseEntity(final Throwable throwable, final HttpStatus httpStatus) {
+        String errorMessage = throwable.getMessage()
+        return create(errorMessage, throwable, httpStatus)
+    }
+
+    private ResponseEntity<HttpApiError> create(final String errorMessage, final Throwable throwable,
+                                                final HttpStatus httpStatus) {
+        logger.error(throwable.getMessage(), throwable)
+        HttpApiError error = HttpApiError.create(httpStatus, errorMessage)
+        return new ResponseEntity<>(error, new HttpHeaders(), error.getStatus())
     }
 }
